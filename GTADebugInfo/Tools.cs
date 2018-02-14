@@ -5,11 +5,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management;
+using System.IO;
+using System.Diagnostics;
 
 namespace GTADebugInfo
 {
     class Tools
     {
+        public enum VisualCVersion
+        {
+            Visual_2017,
+            Visual_2015,
+            Visual_2013,
+            Visual_2012,
+            Visual_2010,
+            Visual_2008,
+            Visual_2005,
+        }
+
+        private static readonly Dictionary<VisualCVersion, Version> visualCVersion = new Dictionary<VisualCVersion, Version>
+        {
+            { VisualCVersion.Visual_2017, new Version("14.1.0.0")},
+            { VisualCVersion.Visual_2015, new Version("14.0.0.0")},
+            { VisualCVersion.Visual_2013, new Version("12.0.0.0")},
+            { VisualCVersion.Visual_2012, new Version("11.0.0.0")},
+            { VisualCVersion.Visual_2010, new Version("10.0.0.0")},
+            { VisualCVersion.Visual_2008, new Version("9.0.0.0")},
+            { VisualCVersion.Visual_2005, new Version("8.0.0.0")}
+        };
+
+        public static bool IsVisualCVersionHigherOrEqual(VisualCVersion visualC)
+        {
+            Version targetVersion = visualCVersion[visualC];
+
+            string[] filters = { "msvcp*.dll", "msvcr*.dll" };
+            List<string> files = new List<string>();
+
+            foreach (string filter in filters)
+                files.AddRange(Directory.GetFiles(Environment.SystemDirectory, filter));
+
+            foreach (string file in files)
+            {
+                FileInfo info = new FileInfo(file);
+                FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(file);
+
+                if (new Version(fileVersion.ProductVersion).CompareTo(targetVersion) >= 0)
+                    return true;
+            }
+
+            return false;
+        }
+
         private static readonly List<string> visual2017 = new List<string> {
             "Installer\\Dependencies\\,,x86,14.0,bundle\\Dependents\\{404c9c27-8377-4fd1-b607-7ca635db4e49}",
             "Installer\\Dependencies\\,,amd64,14.0,bundle\\Dependents\\{6c6356fe-cbfa-4944-9bed-a9e99f45cb7a}"

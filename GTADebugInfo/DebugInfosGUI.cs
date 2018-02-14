@@ -145,8 +145,20 @@ namespace GTADebugInfo
                     sw.WriteLine();
                     sw.WriteLine("[Visual C++ Versions]");
                     richTextBoxLog.AppendText("\r\n[Visual C++ Versions]\r\n");
-                    sw.WriteLine(visualC);
-                    richTextBoxLog.AppendText(visualC + "\r\n");
+                    sw.WriteLine("Visual C++ version higher or equal to 2017 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2017));
+                    sw.WriteLine("Visual C++ version higher or equal to 2015 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2015));
+                    sw.WriteLine("Visual C++ version higher or equal to 2013 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2013));
+                    sw.WriteLine("Visual C++ version higher or equal to 2012 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2012));
+                    sw.WriteLine("Visual C++ version higher or equal to 2010 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2010));
+                    sw.WriteLine("Visual C++ version higher or equal to 2008 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2008));
+                    sw.WriteLine("Visual C++ version higher or equal to 2005 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2005));
+                    richTextBoxLog.AppendText("Visual C++ version higher or equal to 2017 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2017) + "\r\n");
+                    richTextBoxLog.AppendText("Visual C++ version higher or equal to 2015 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2015) + "\r\n");
+                    richTextBoxLog.AppendText("Visual C++ version higher or equal to 2013 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2013) + "\r\n");
+                    richTextBoxLog.AppendText("Visual C++ version higher or equal to 2012 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2012) + "\r\n");
+                    richTextBoxLog.AppendText("Visual C++ version higher or equal to 2010 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2010) + "\r\n");
+                    richTextBoxLog.AppendText("Visual C++ version higher or equal to 2008 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2008) + "\r\n");
+                    richTextBoxLog.AppendText("Visual C++ version higher or equal to 2005 = " + Tools.IsVisualCVersionHigherOrEqual(Tools.VisualCVersion.Visual_2005) + "\r\n");
 
 
                     // NET Framework Version
